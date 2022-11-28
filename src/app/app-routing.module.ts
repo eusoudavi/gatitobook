@@ -10,7 +10,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((moduloRecebido) => moduloRecebido.HomeModule)
-    // ACIMA, ESTAMOS ENCAMINHANDO AS ROTAS DO HOME PARA SEU RESPECTIVO routing.module.ts
+  },
+  {
+    path: 'animais',
+    loadChildren: () => import('./animais/animais.module').then((m) => m.AnimaisModule)
   }
 ];
 
