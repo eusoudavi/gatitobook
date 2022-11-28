@@ -1,3 +1,4 @@
+import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home.component';
 import { NgModule, Component } from '@angular/core';
@@ -5,13 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    // O MÓDULO APP IRÁ ENCAMINHAR PARA CÁ SOMENTE AS ROTAS RELACIONADAS AO HOME. LOGO,
     path: '',
     component: HomeComponent,
-    children: [ // AQUI, ESTAMOS CRIANDO SUB-ROTAS NA PÁGINA HOME
+    children: [
       {
-        path: '', // QUANDO A ROTA FOR VAZIA, IRÁ SER PROJETADO O COMPONENTE DE LOGIN
+        path: '',
         component: LoginComponent
+      },
+      {
+        path: 'novousuario',
+        component: NovoUsuarioComponent
       }
     ]
   }
