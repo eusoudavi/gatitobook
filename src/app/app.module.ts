@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, HomeModule
+    AppRoutingModule
+    //, HomeModule -- NÃO VAMOS MAIS IMPORTAR O MÓDULO DIRETAMENTE, MAS COM A ROTA, SOB DEMANDA
   ],
   providers: [],
   bootstrap: [AppComponent]
