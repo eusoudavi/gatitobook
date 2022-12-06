@@ -4,6 +4,7 @@ import { minusculoValidator } from './minusculo.validator';
 import { NovoUsuario } from './novo-usuario';
 import { NovoUsuarioService } from './novo-usuario.service';
 import { UsuarioExisteService } from './usuario-existe.service';
+import { usuarioSenhaiguaisValidator } from './usuario-senha-iguais.validator';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -32,7 +33,11 @@ export class NovoUsuarioComponent {
       ]],
       userName: ['', [minusculoValidator], [this.usuarioExisteService.usuarioJaExistente()]],
       password: ['']
-    });
+    }, {
+      validators: [usuarioSenhaiguaisValidator]
+      // ATENÇÃO: ESSE VALIDATORS TEM QUE SER TUDO MINÚSCULO
+    }
+    );
   }
 
   cadastrar() {
