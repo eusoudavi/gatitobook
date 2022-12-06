@@ -1,6 +1,6 @@
 <h4 class="text-center">Registre-se</h4>
 
-<form class="form mt-3" [formGroup]="novoUsuarioForm" (submit)="cadastrar">
+<form class="form mt-3" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
   <div class="form-group mb-2">
     <input type="text" placeholder="Digite seu email" class="form-control" formControlName="email" />
     <app-mensagem
@@ -13,7 +13,7 @@
       *ngIf="
         novoUsuarioForm.get('email')?.errors?.['email'] &&
         novoUsuarioForm.get('email')?.touched"
-      mensagem="Email no formato incorreto">
+        mensagem="Email no formato incorreto">
     </app-mensagem>
   </div>
 
@@ -29,14 +29,14 @@
   <div class="form-group mb-2">
     <input type="text" placeholder="Nome do Usuário" class="form-control" formControlName="userName" />
     <app-mensagem
-      mensagem="Usuário deve ser em letra minuscula"
       *ngIf="novoUsuarioForm.get('userName')?.errors?.['minusculo'] &&
-      novoUsuarioForm.get('userName')?.touched">
+      novoUsuarioForm.get('userName')?.touched"
+      mensagem="Usuário deve ser em letra minuscula">
     </app-mensagem>
 
     <app-mensagem
-      mensagem="Usuário já existe"
-      *ngIf="novoUsuarioForm.get('userName')?.errors?.['usuarioExistente']">
+      *ngIf="novoUsuarioForm.get('userName')?.errors?.['usuarioExistente']"
+      mensagem="Usuário já existe">
     </app-mensagem>
   </div>
 
@@ -46,10 +46,11 @@
       mensagem="Senha deve ser diferente de Usuário"
       *ngIf="novoUsuarioForm.errors?.['senhaIgualUsuario']">
     </app-mensagem>
-
   </div>
 
-  <button class="btn btn-primary btn-block">Cadastro</button>
+  <button class="btn btn-primary btn-block" type="submit"
+  [disabled]="novoUsuarioForm.invalid">Cadastro</button>
+
 </form>
 
 <p>Já é um usuário? <a [routerLink]="['']">Faça o login!</a></p>
