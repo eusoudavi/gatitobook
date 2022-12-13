@@ -1,21 +1,19 @@
-import { environment } from './../../../environments/environments.prod';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
-const API = environment.API_URL;
+const API = environment.apiURL;
 
 @Component({
   selector: 'app-animal',
   templateUrl: './animal.component.html',
-  styleUrls: ['./animal.component.css']
+  styleUrls: ['./animal.component.css'],
 })
-export class AnimalComponent {
+export class AnimalComponent implements OnInit {
   private urlOriginal = '';
 
-  @Input()
-  descricao = '';
+  @Input() descricao = '';
 
-  @Input()
-  set url(url: string) {
+  @Input() set url(url: string) {
     if (url.startsWith('data')) {
       this.urlOriginal = url;
     } else {
@@ -27,6 +25,7 @@ export class AnimalComponent {
     return this.urlOriginal;
   }
 
-  constructor() { }
+  constructor() {}
 
+  ngOnInit(): void {}
 }
