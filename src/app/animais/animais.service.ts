@@ -29,11 +29,24 @@ export class AnimaisService {
 
   curtir(id: number): Observable<boolean> {
     return this.http
-    .post(`${API}/photos/${id}/like`, {}, { observe: 'response'})
-    .pipe(mapTo(true), catchError((error) => {
-          return error.status === NOT_MODIFIED ? of(false) : throwError(error);
-        })
+      .post(`${API}/photos/${id}/like`, {}, { observe: 'response' })
+      .pipe(mapTo(true), catchError((error) => {
+        return error.status === NOT_MODIFIED ? of(false) : throwError(error);
+      })
       )
+  }
+
+  upload(descricacao: string, permiteComentario: boolean, arquivo: File) {
+    const formData = new FormData(); // AQUI VAMOS UTILIZAR O MÉTODO DO JS PARA COLOCAR UM ARQUIVO BINÁRIO DENTRO DA REQUISIÇÃO DO ANGULAR
+    formData.append('description', descricacao);
+    formData.append('allowComments', permiteComentario ? 'true' : 'false');
+    formData.append('imageFile', arquivo);
+
+    return this.http.post(`${API}/photos/upload`, formData, {
+      observe: 'events',
+      reportProgress: true,
+    })
+
   }
 
 }
